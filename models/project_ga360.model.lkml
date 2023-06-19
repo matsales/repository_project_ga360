@@ -10,7 +10,22 @@ datagroup: project_ga360_default_datagroup {
 
 persist_with: project_ga360_default_datagroup
 
+named_value_format: hour_format {
+  value_format: "[h]:mm:ss"
+}
+
+named_value_format: formatted_number {
+  value_format:"[<1000]0;[<1000000]0.0,\"K\";0.0,,\"M\""
+}
+
 explore: google_analytics_pt {
+
+  join: audience_cohorts {
+    type: left_outer
+    sql_on: ${google_analytics_pt.audience_trait} = ${audience_cohorts.audience_trait} ;;
+    relationship: many_to_one
+  }
+
   join: google_analytics_pt__hits {
     view_label: "Google Analytics Pt: Hits"
     sql: LEFT JOIN UNNEST(${google_analytics_pt.hits}) as google_analytics_pt__hits ;;
