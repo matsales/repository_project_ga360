@@ -1,7 +1,7 @@
 include: "/views/new_views/new_google_analytics_pt.view.lkml"
 
 view: google_analytics_pt {
-  sql_table_name: `google_analytics_sample.ga_sessions` ;;
+  sql_table_name: `@{table_path}` ;;
   extends: [new_google_analytics_pt]
 
 
