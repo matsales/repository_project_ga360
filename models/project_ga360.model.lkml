@@ -1,4 +1,4 @@
-connection: "connection_ga360"
+connection: "@{connection}"
 
 # include all the views
 include: "/views/**/*.view"
